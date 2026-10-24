@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BEN LYNCH AUDIO | Sound Design & Music Production</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Font: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#0a0c0e',
+              card: '#121519',
+              border: '#1e242d',
+              accent: '#00f0ff',
+              purple: '#7000ff',
+              pink: '#ff007a',
+              text: '#e2e8f0',
+              muted: '#8b9bb4'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0c0e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e242d;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f0ff;
+    }
+
+    /* Subtle glow utilities */
+    .glow-cyan {
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+    }
+    .glow-cyan-lg {
+      box-shadow: 0 0 35px rgba(0, 240, 255, 0.3);
+    }
+    .text-glow {
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    }
+  </style>
+</head>
+<body class="bg-brand-bg text-brand-text font-sans antialiased selection:bg-brand-accent selection:text-black min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+  <!-- ========================================== -->
+  <!-- HEADER & NAVIGATION                        -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-border/60 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-accent to-brand-purple flex items-center justify-center font-mono font-bold text-black text-xl shadow-lg group-hover:scale-105 transition-transform duration-300">
+          BL
+        </div>
+        <div>
+          <span class="font-mono font-extrabold text-lg sm:text-xl tracking-wider text-white block leading-none">BEN LYNCH</span>
+          <span class="font-mono text-xs text-brand-accent tracking-widest uppercase block mt-1">Audio & Sound Design</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+        <a href="#hero" class="nav-link hover:text-brand-accent transition-colors py-1">Playground</a>
+        <a href="#work" class="nav-link hover:text-brand-accent transition-colors py-1">Audio Showcase</a>
+        <a href="#soundboard" class="nav-link hover:text-brand-accent transition-colors py-1">SFX Lab</a>
+        <a href="#about" class="nav-link hover:text-brand-accent transition-colors py-1">About</a>
+        <a href="#contact" class="nav-link hover:text-brand-accent transition-colors py-1">Contact</a>
+      </nav>
+
+      <!-- Right Action Controls (Audio Toggle & Mobile Menu) -->
+      <div class="flex items-center space-x-4">
+        <!-- Audio Consent / Master Mute Toggle -->
+        <button id="master-audio-btn" class="flex items-center space-x-2 bg-brand-card hover:bg-brand-border border border-brand-border hover:border-brand-accent/50 text-xs font-mono px-3 py-2 rounded-full transition-all duration-300 group">
+          <span id="audio-status-dot" class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+          <span id="audio-status-text" class="text-brand-muted group-hover:text-white">AUDIO: OFF</span>
+          <i id="audio-status-icon" class="fa-solid fa-volume-xmark text-brand-muted"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-brand-muted hover:text-white p-2 rounded-lg border border-brand-border">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Nav Dropdown -->
+    <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-brand-border px-4 pt-2 pb-6 space-y-3 font-mono text-sm">
+      <a href="#hero" class="mobile-nav-link block py-2 hover:text-brand-accent">Playground</a>
+      <a href="#work" class="mobile-nav-link block py-2 hover:text-brand-accent">Audio Showcase</a>
+      <a href="#soundboard" class="mobile-nav-link block py-2 hover:text-brand-accent">SFX Lab</a>
+      <a href="#about" class="mobile-nav-link block py-2 hover:text-brand-accent">About</a>
+      <a href="#contact" class="mobile-nav-link block py-2 hover:text-brand-accent">Contact</a>
+    </div>
+  </header>
+
+
+  <!-- ========================================== -->
+  <!-- HERO SECTION / THEREMIN CANVAS             -->
+  <!-- ========================================== -->
+  <section id="hero" class="relative min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center px-4 py-10 overflow-hidden">
+    
+    <!-- Hero Canvas Overlay Text -->
+    <div class="absolute z-10 text-center pointer-events-none select-none max-w-3xl px-4">
+      <span class="inline-block px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent font-mono text-xs uppercase tracking-widest mb-4">
+        Interactive Web-Audio Canvas
+      </span>
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-4">
+        Immersive Audio <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-purple-400 to-brand-pink text-glow">
+          & Sound Design
+        </span>
+      </h1>
+      <p class="text-base sm:text-lg text-brand-muted font-sans max-w-xl mx-auto mb-6">
+        Designing sonic identities for games, films, and digital experiences.
+      </p>
+
+      <!-- Theremin Prompt Badge -->
+      <div class="inline-flex items-center space-x-2 bg-brand-card/90 backdrop-blur border border-brand-accent/40 text-brand-accent text-xs font-mono px-4 py-2 rounded-full shadow-lg">
+        <i class="fa-solid fa-hand-pointer animate-bounce"></i>
+        <span>Move cursor across canvas to play Synth Theremin</span>
+      </div>
+    </div>
+
+    <!-- Theremin Canvas Container -->
+    <div class="w-full max-w-6xl h-[60vh] min-h-[400px] relative rounded-2xl overflow-hidden border border-brand-border/80 bg-brand-card/40 backdrop-blur shadow-2xl cursor-crosshair group">
+      
+      <!-- Live Web Audio Synthesizer Canvas -->
+      <canvas id="theremin-canvas" class="w-full h-full block"></canvas>
+
+      <!-- Canvas Audio HUD Parameters -->
+      <div class="absolute bottom-4 left-4 right-4 flex flex-wrap justify-between items-center gap-2 pointer-events-none text-xs font-mono text-brand-muted bg-brand-bg/80 px-4 py-2 rounded-xl border border-brand-border/60">
+        <div class="flex items-center space-x-4">
+          <div>PITCH: <span id="hud-pitch" class="text-brand-accent">0 Hz</span></div>
+          <div>CUTOFF: <span id="hud-cutoff" class="text-brand-pink">0 Hz</span></div>
+        </div>
+        <div class="hidden sm:block">
+          <span>X: Pitch | Y: Filter Cutoff & Gain</span>
+        </div>
+        <div id="theremin-active-indicator" class="flex items-center space-x-1">
+          <span class="w-2 h-2 rounded-full bg-gray-500"></span>
+          <span id="theremin-status">INACTIVE</span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- PORTFOLIO / AUDIO SHOWCASE SECTION         -->
+  <!-- ========================================== -->
+  <section id="work" class="py-20 border-t border-brand-border/60 bg-brand-bg/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Title -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <h2 class="text-xs font-mono text-brand-accent uppercase tracking-widest mb-2">// AUDIO PORTFOLIO</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-white">Featured Audio Work</h3>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap gap-2 mt-6 md:mt-0 font-mono text-xs">
+          <button class="filter-btn active px-4 py-2 rounded-lg border border-brand-accent bg-brand-accent/10 text-brand-accent transition-all" data-category="all">ALL</button>
+          <button class="filter-btn px-4 py-2 rounded-lg border border-brand-border hover:border-brand-accent/50 text-brand-muted hover:text-white transition-all" data-category="game">GAME AUDIO</button>
+          <button class="filter-btn px-4 py-2 rounded-lg border border-brand-border hover:border-brand-accent/50 text-brand-muted hover:text-white transition-all" data-category="film">FILM SCORING</button>
+          <button class="filter-btn px-4 py-2 rounded-lg border border-brand-border hover:border-brand-accent/50 text-brand-muted hover:text-white transition-all" data-category="ui">UI & BRAND</button>
+        </div>
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Item 1 -->
+        <div class="portfolio-item group bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-accent/50 transition-all duration-300 flex flex-col justify-between" data-category="game">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-brand-accent/10 text-brand-accent border border-brand-accent/20">GAME AUDIO</span>
+              <span class="text-xs font-mono text-brand-muted">Cyberpunk Action</span>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">Neon Horizon Weapons & FX</h4>
+            <p class="text-sm text-brand-muted mb-6">Procedural weapon sounds, atmospheric synth layers, and adaptive audio assets designed for futuristic shooter environments.</p>
+          </div>
+
+          <!-- Synthetic Player Controls -->
+          <div class="bg-brand-bg rounded-lg p-3 border border-brand-border/60">
+            <div class="flex items-center space-x-3 mb-2">
+              <button class="audio-play-btn w-10 h-10 rounded-full bg-brand-accent text-black flex items-center justify-center hover:scale-105 transition-transform" data-sound="cyberpunk">
+                <i class="fa-solid fa-play ml-0.5"></i>
+              </button>
+              <div class="flex-1">
+                <div class="text-xs font-mono text-white flex justify-between mb-1">
+                  <span>Synthesized Demo Track</span>
+                  <span class="audio-time">0:00</span>
+                </div>
+                <!-- Simulated Waveform -->
+                <div class="w-full bg-brand-border/60 h-2 rounded-full overflow-hidden relative cursor-pointer audio-progress-bg">
+                  <div class="audio-progress bg-gradient-to-r from-brand-accent to-brand-purple h-full w-0 transition-all"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="portfolio-item group bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-accent/50 transition-all duration-300 flex flex-col justify-between" data-category="film">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-brand-pink/10 text-brand-pink border border-brand-pink/20">FILM SCORING</span>
+              <span class="text-xs font-mono text-brand-muted">Sci-Fi Short</span>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">Abyssal Void Trailer Score</h4>
+            <p class="text-sm text-brand-muted mb-6">Dark orchestral textures, granular drone synthesis, and cinematic braams created for deep-space thriller trailer.</p>
+          </div>
+
+          <!-- Synthetic Player Controls -->
+          <div class="bg-brand-bg rounded-lg p-3 border border-brand-border/60">
+            <div class="flex items-center space-x-3 mb-2">
+              <button class="audio-play-btn w-10 h-10 rounded-full bg-brand-accent text-black flex items-center justify-center hover:scale-105 transition-transform" data-sound="scifi">
+                <i class="fa-solid fa-play ml-0.5"></i>
+              </button>
+              <div class="flex-1">
+                <div class="text-xs font-mono text-white flex justify-between mb-1">
+                  <span>Synthesized Demo Track</span>
+                  <span class="audio-time">0:00</span>
+                </div>
+                <div class="w-full bg-brand-border/60 h-2 rounded-full overflow-hidden relative cursor-pointer audio-progress-bg">
+                  <div class="audio-progress bg-gradient-to-r from-brand-accent to-brand-purple h-full w-0 transition-all"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="portfolio-item group bg-brand-card border border-brand-border rounded-xl p-6 hover:border-brand-accent/50 transition-all duration-300 flex flex-col justify-between" data-category="ui">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-brand-purple/10 text-purple-400 border border-brand-purple/20">UI & BRAND</span>
+              <span class="text-xs font-mono text-brand-muted">Mobile App</span>
+            </div>
+            <h4 class="text-xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">Aether UI Sonic Suite</h4>
+            <p class="text-sm text-brand-muted mb-6">Tactile, pleasant micro-interactions, notification chimes, and state feedback audio for next-gen creative software.</p>
+          </div>
+
+          <!-- Synthetic Player Controls -->
+          <div class="bg-brand-bg rounded-lg p-3 border border-brand-border/60">
+            <div class="flex items-center space-x-3 mb-2">
+              <button class="audio-play-btn w-10 h-10 rounded-full bg-brand-accent text-black flex items-center justify-center hover:scale-105 transition-transform" data-sound="ui">
+                <i class="fa-solid fa-play ml-0.5"></i>
+              </button>
+              <div class="flex-1">
+                <div class="text-xs font-mono text-white flex justify-between mb-1">
+                  <span>Synthesized Demo Track</span>
+                  <span class="audio-time">0:00</span>
+                </div>
+                <div class="w-full bg-brand-border/60 h-2 rounded-full overflow-hidden relative cursor-pointer audio-progress-bg">
+                  <div class="audio-progress bg-gradient-to-r from-brand-accent to-brand-purple h-full w-0 transition-all"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- INTERACTIVE SOUND PLAYGROUND / SFX LAB     -->
+  <!-- ========================================== -->
+  <section id="soundboard" class="py-20 border-t border-brand-border/60 bg-brand-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-xs font-mono text-brand-accent uppercase tracking-widest mb-2">// REALTIME SYNTHESIS LAB</h2>
+        <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Interactive SFX Generator</h3>
+        <p class="text-brand-muted text-sm">
+          Test dynamic procedural sound synthesis built purely in JavaScript using the Web Audio API. Tweak the macro knobs to shape the sound in real-time.
+        </p>
+      </div>
+
+      <div class="bg-brand-card border border-brand-border rounded-2xl p-6 sm:p-8 max-w-4xl mx-auto shadow-xl">
+        
+        <!-- Controls Panel (Knobs / Sliders) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 p-4 bg-brand-bg/80 rounded-xl border border-brand-border/60">
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-2">
+              <label for="pitch-shift" class="text-brand-muted">PITCH MODIFIER</label>
+              <span id="pitch-val" class="text-brand-accent">1.0x</span>
+            </div>
+            <input type="range" id="pitch-shift" min="0.2" max="3.0" step="0.1" value="1.0" class="w-full accent-brand-accent cursor-pointer bg-brand-border rounded-lg">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-2">
+              <label for="filter-freq" class="text-brand-muted">FILTER CUTOFF (Hz)</label>
+              <span id="filter-val" class="text-brand-pink">3500 Hz</span>
+            </div>
+            <input type="range" id="filter-freq" min="200" max="10000" step="100" value="3500" class="w-full accent-brand-pink cursor-pointer bg-brand-border rounded-lg">
+          </div>
+        </div>
+
+        <!-- Sound Trigger Buttons Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+          
+          <button class="sfx-btn flex flex-col items-center justify-center p-4 bg-brand-bg hover:bg-brand-border/80 border border-brand-border hover:border-brand-accent rounded-xl group transition-all" data-sfx="laser">
+            <i class="fa-solid fa-bolt text-2xl text-brand-accent mb-2 group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs font-mono text-white">LASER PEW</span>
+          </button>
+
+          <button class="sfx-btn flex flex-col items-center justify-center p-4 bg-brand-bg hover:bg-brand-border/80 border border-brand-border hover:border-brand-accent rounded-xl group transition-all" data-sfx="sub">
+            <i class="fa-solid fa-drum text-2xl text-brand-pink mb-2 group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs font-mono text-white">SUB DROP</span>
+          </button>
+
+          <button class="sfx-btn flex flex-col items-center justify-center p-4 bg-brand-bg hover:bg-brand-border/80 border border-brand-border hover:border-brand-accent rounded-xl group transition-all" data-sfx="powerup">
+            <i class="fa-solid fa-turn-up text-2xl text-purple-400 mb-2 group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs font-mono text-white">POWER UP</span>
+          </button>
+
+          <button class="sfx-btn flex flex-col items-center justify-center p-4 bg-brand-bg hover:bg-brand-border/80 border border-brand-border hover:border-brand-accent rounded-xl group transition-all" data-sfx="glitch">
+            <i class="fa-solid fa-bug text-2xl text-yellow-400 mb-2 group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs font-mono text-white">GLITCH NOISE</span>
+          </button>
+
+          <button class="sfx-btn flex flex-col items-center justify-center p-4 bg-brand-bg hover:bg-brand-border/80 border border-brand-border hover:border-brand-accent rounded-xl group transition-all" data-sfx="pad">
+            <i class="fa-solid fa-wave-square text-2xl text-green-400 mb-2 group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs font-mono text-white">AMBIENT PAD</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- ABOUT ME SECTION                           -->
+  <!-- ========================================== -->
+  <section id="about" class="py-20 border-t border-brand-border/60 bg-brand-bg/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Bio Column -->
+        <div class="lg:col-span-7">
+          <h2 class="text-xs font-mono text-brand-accent uppercase tracking-widest mb-2">// BIOGRAPHY</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-6">Sound Design & Sonic Engineering</h3>
+          
+          <p class="text-brand-muted mb-4 leading-relaxed">
+            Hi, I’m <strong class="text-white">Ben Lynch</strong>. I specialize in sound design, music composition, and audio implementation for games, film, and interactive media. With a deep passion for sonic storytelling, I create immersive soundscapes that elevate emotional resonance and user engagement.
+          </p>
+          
+          <p class="text-brand-muted mb-8 leading-relaxed">
+            Whether synthesizing procedural weapon sounds for fast-paced shooters, scoring dynamic orchestral themes, or integrating audio into middleware pipelines, I bridge the gap between creative sound art and technical implementation.
+          </p>
+
+          <!-- Key Skills & Software Badges -->
+          <div class="space-y-4">
+            <h4 class="text-xs font-mono text-white uppercase tracking-wider">DAWs & Audio Engines</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 bg-brand-card border border-brand-border rounded-md text-xs font-mono text-brand-text">Ableton Live</span>
+              <span class="px-3 py-1.5 bg-brand-card border border-brand-border rounded-md text-xs font-mono text-brand-text">Pro Tools</span>
+              <span class="px-3 py-1.5 bg-brand-card border border-brand-border rounded-md text-xs font-mono text-brand-text">Wwise</span>
+              <span class="px-3 py-1.5 bg-brand-card border border-brand-border rounded-md text-xs font-mono text-brand-text">FMOD</span>
+              <span class="px-3 py-1.5 bg-brand-card border border-brand-border rounded-md text-xs font-mono text-brand-text">Max/MSP</span>
+              <span class="px-3 py-1.5 bg-brand-card border border-brand-border rounded-md text-xs font-mono text-brand-text">Web Audio API</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spec Sheet / Studio Rack Card -->
+        <div class="lg:col-span-5 bg-brand-card border border-brand-border rounded-2xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-accent/5 rounded-full blur-2xl"></div>
+          
+          <div class="flex items-center justify-between pb-4 border-b border-brand-border mb-6">
+            <span class="font-mono text-xs text-brand-accent uppercase">// STUDIO SPECIFICATION</span>
+            <i class="fa-solid fa-sliders text-brand-muted"></i>
+          </div>
+
+          <ul class="space-y-4 text-sm font-mono">
+            <li class="flex justify-between">
+              <span class="text-brand-muted">Primary Focus:</span>
+              <span class="text-white font-semibold">Game SFX & Scoring</span>
+            </li>
+            <li class="flex justify-between">
+              <span class="text-brand-muted">Middleware:</span>
+              <span class="text-white font-semibold">Wwise, FMOD Studio</span>
+            </li>
+            <li class="flex justify-between">
+              <span class="text-brand-muted">Synthesis:</span>
+              <span class="text-white font-semibold">Modular, Serum, Max</span>
+            </li>
+            <li class="flex justify-between">
+              <span class="text-brand-muted">Location:</span>
+              <span class="text-white font-semibold">London / Remote</span>
+            </li>
+            <li class="flex justify-between">
+              <span class="text-brand-muted">Domain:</span>
+              <span class="text-brand-accent font-semibold">benlynchaudio.com</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- CONTACT SECTION                            -->
+  <!-- ========================================== -->
+  <section id="contact" class="py-20 border-t border-brand-border/60 bg-brand-bg">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <h2 class="text-xs font-mono text-brand-accent uppercase tracking-widest mb-2">// GET IN TOUCH</h2>
+      <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Let's Create Something Epic</h3>
+      <p class="text-brand-muted text-sm max-w-xl mx-auto mb-10">
+        Available for freelance game audio projects, film scoring, UI sound design, and custom audio implementation.
+      </p>
+
+      <!-- Contact Form -->
+      <form id="contact-form" class="bg-brand-card border border-brand-border rounded-2xl p-6 sm:p-8 text-left space-y-4 shadow-2xl mb-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-mono text-brand-muted mb-2">YOUR NAME</label>
+            <input type="text" required placeholder="Alex Mercer" class="w-full bg-brand-bg border border-brand-border focus:border-brand-accent rounded-lg px-4 py-3 text-sm text-white focus:outline-none transition-colors">
+          </div>
+          <div>
+            <label class="block text-xs font-mono text-brand-muted mb-2">EMAIL ADDRESS</label>
+            <input type="email" required placeholder="alex@studio.com" class="w-full bg-brand-bg border border-brand-border focus:border-brand-accent rounded-lg px-4 py-3 text-sm text-white focus:outline-none transition-colors">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-brand-muted mb-2">PROJECT TYPE</label>
+          <select class="w-full bg-brand-bg border border-brand-border focus:border-brand-accent rounded-lg px-4 py-3 text-sm text-white focus:outline-none transition-colors">
+            <option>Game Sound Design & Middleware</option>
+            <option>Film Score / Original Music</option>
+            <option>UI & Brand Sonic Identity</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-brand-muted mb-2">PROJECT DETAILS</label>
+          <textarea rows="4" required placeholder="Tell me about your project scope, timeline, and audio vision..." class="w-full bg-brand-bg border border-brand-border focus:border-brand-accent rounded-lg px-4 py-3 text-sm text-white focus:outline-none transition-colors"></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-brand-accent hover:bg-cyan-400 text-black font-mono font-bold py-3.5 rounded-lg transition-colors flex items-center justify-center space-x-2">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>SEND TRANSMISSION</span>
+        </button>
+      </form>
+
+      <!-- Direct Links & Socials -->
+      <div class="flex flex-wrap justify-center items-center gap-6 text-sm font-mono">
+        <a href="mailto:contact@benlynchaudio.com" class="text-brand-muted hover:text-brand-accent transition-colors flex items-center space-x-2">
+          <i class="fa-solid fa-envelope"></i>
+          <span>contact@benlynchaudio.com</span>
+        </a>
+        <a href="https://twitter.com" target="_blank" class="text-brand-muted hover:text-brand-accent transition-colors flex items-center space-x-2">
+          <i class="fa-brands fa-twitter"></i>
+          <span>Twitter / X</span>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="text-brand-muted hover:text-brand-accent transition-colors flex items-center space-x-2">
+          <i class="fa-brands fa-linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================== -->
+  <!-- FOOTER                                     -->
+  <!-- ========================================== -->
+  <footer class="border-t border-brand-border/60 py-8 bg-brand-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center text-xs font-mono text-brand-muted">
+      <div>
+        © <span id="year"></span> BEN LYNCH AUDIO. All rights reserved.
+      </div>
+      <div class="mt-4 sm:mt-0 text-brand-muted/70">
+        Designed for <span class="text-brand-accent">benlynchaudio.com</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Notifications Container -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT: WEB AUDIO & INTERACTIVE LOGIC  -->
+  <!-- ========================================== -->
+  <script>
+    // Set dynamic copyright year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ==========================================
+       1. GLOBAL WEB AUDIO ENGINE STATE
+       ========================================== */
+    let audioCtx = null;
+    let isAudioEnabled = false;
+
+    // Toast notification function
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'bg-brand-card border border-brand-accent text-white font-mono text-xs px-4 py-3 rounded-lg shadow-2xl transition-all duration-300 opacity-0 transform translate-y-2';
+      toast.innerHTML = `<i class="fa-solid fa-circle-info text-brand-accent mr-2"></i> ${message}`;
+      container.appendChild(toast);
+      
+      requestAnimationFrame(() => {
+        toast.classList.remove('opacity-0', 'translate-y-2');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Initialize Web Audio Context safely on user action
+    function initAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContextClass();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      isAudioEnabled = true;
+      updateAudioToggleUI();
+    }
+
+    // Toggle Audio Master Consent
+    const masterAudioBtn = document.getElementById('master-audio-btn');
+    const audioStatusDot = document.getElementById('audio-status-dot');
+    const audioStatusText = document.getElementById('audio-status-text');
+    const audioStatusIcon = document.getElementById('audio-status-icon');
+
+    function updateAudioToggleUI() {
+      if (isAudioEnabled) {
+        audioStatusDot.className = "w-2 h-2 rounded-full bg-brand-accent animate-pulse";
+        audioStatusText.textContent = "AUDIO: ON";
+        audioStatusText.className = "text-brand-accent font-bold";
+        audioStatusIcon.className = "fa-solid fa-volume-high text-brand-accent";
+      } else {
+        audioStatusDot.className = "w-2 h-2 rounded-full bg-red-500 animate-pulse";
+        audioStatusText.textContent = "AUDIO: OFF";
+        audioStatusText.className = "text-brand-muted";
+        audioStatusIcon.className = "fa-solid fa-volume-xmark text-brand-muted";
+      }
+    }
+
+    masterAudioBtn.addEventListener('click', () => {
+      if (!isAudioEnabled) {
+        initAudioContext();
+        showToast("Audio Engine Activated! Enjoy the interactive sounds.");
+      } else {
+        isAudioEnabled = false;
+        if (thereminGain) thereminGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.05);
+        updateAudioToggleUI();
+        showToast("Audio Muted.");
+      }
+    });
+
+
+    /* ==========================================
+       2. THEREMIN SYNTH & PARTICLE CANVAS
+       ========================================== */
+    const canvas = document.getElementById('theremin-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let canvasWidth = 0;
+    let canvasHeight = 0;
+    let mouseX = 0;
+    let mouseY = 0;
+    let isHoveringCanvas = false;
+
+    // Theremin Audio Nodes
+    let thereminOsc = null;
+    let thereminFilter = null;
+    let thereminGain = null;
+
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      canvasWidth = rect.width;
+      canvasHeight = rect.height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Setup Theremin Web Audio Nodes
+    function setupThereminNodes() {
+      if (!audioCtx) return;
+
+      thereminOsc = audioCtx.createOscillator();
+      thereminFilter = audioCtx.createBiquadFilter();
+      thereminGain = audioCtx.createGain();
+
+      thereminOsc.type = 'sine';
+      thereminOsc.frequency.setValueAtTime(220, audioCtx.currentTime);
+
+      thereminFilter.type = 'lowpass';
+      thereminFilter.frequency.setValueAtTime(1000, audioCtx.currentTime);
+
+      thereminGain.gain.setValueAtTime(0, audioCtx.currentTime);
+
+      thereminOsc.connect(thereminFilter);
+      thereminFilter.connect(thereminGain);
+      thereminGain.connect(audioCtx.destination);
+
+      thereminOsc.start();
+    }
+
+    // Particles system for Canvas background visualizer
+    const particles = [];
+    const particleCount = 45;
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvasWidth;
+        this.y = Math.random() * canvasHeight;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
+        this.radius = Math.random() * 2 + 1;
+        this.alpha = Math.random() * 0.5 + 0.2;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > canvasWidth) this.vx *= -1;
+        if (this.y < 0 || this.y > canvasHeight) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 240, 255, ${this.alpha})`;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    // Main Canvas Render Loop
+    function renderCanvas() {
+      ctx.fillStyle = 'rgba(10, 12, 14, 0.25)';
+      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+      // Draw particle connections
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(0, 240, 255, ${0.1 * (1 - dist / 100)})`;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw cursor theremin target & ripple
+      if (isHoveringCanvas) {
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, 15, 0, Math.PI * 2);
+        ctx.strokeStyle = '#00f0ff';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, 30, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(255, 0, 122, 0.4)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      requestAnimationFrame(renderCanvas);
+    }
+    renderCanvas();
+
+    // Canvas Mouse / Touch Interaction
+    function handleCanvasPointerMove(e) {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+
+      if (!isHoveringCanvas) return;
+
+      // Calculate audio parameters from cursor position
+      // X Axis: Pitch (100 Hz to 1200 Hz)
+      const pitch = 100 + (mouseX / canvasWidth) * 1100;
+      // Y Axis: Filter Cutoff (200 Hz to 6000 Hz)
+      const cutoff = 200 + (1 - mouseY / canvasHeight) * 5800;
+
+      // Update HUD
+      document.getElementById('hud-pitch').textContent = `${Math.round(pitch)} Hz`;
+      document.getElementById('hud-cutoff').textContent = `${Math.round(cutoff)} Hz`;
+
+      // Update Web Audio Synth
+      if (isAudioEnabled && audioCtx) {
+        if (!thereminOsc) setupThereminNodes();
+
+        thereminOsc.frequency.setTargetAtTime(pitch, audioCtx.currentTime, 0.03);
+        thereminFilter.frequency.setTargetAtTime(cutoff, audioCtx.currentTime, 0.03);
+        thereminGain.gain.setTargetAtTime(0.15, audioCtx.currentTime, 0.05);
+      }
+    }
+
+    canvas.addEventListener('mousemove', handleCanvasPointerMove);
+
+    canvas.addEventListener('mouseenter', () => {
+      isHoveringCanvas = true;
+      document.getElementById('theremin-status').textContent = "ACTIVE";
+      document.getElementById('theremin-status').className = "text-brand-accent font-bold";
+      if (!isAudioEnabled) {
+        initAudioContext();
+      }
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      isHoveringCanvas = false;
+      document.getElementById('theremin-status').textContent = "INACTIVE";
+      document.getElementById('theremin-status').className = "text-brand-muted";
+      if (thereminGain && audioCtx) {
+        thereminGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.08);
+      }
+    });
+
+
+    /* ==========================================
+       3. PORTFOLIO AUDIO PLAYER SYNTHESIS
+       ========================================== */
+    let currentPlayingBtn = null;
+    let synthLoopInterval = null;
+
+    function playSyntheticTrack(type, btn) {
+      if (!isAudioEnabled) initAudioContext();
+
+      // Reset existing playback UI if active
+      if (currentPlayingBtn && currentPlayingBtn !== btn) {
+        stopSyntheticTrack(currentPlayingBtn);
+      }
+
+      if (btn.classList.contains('playing')) {
+        stopSyntheticTrack(btn);
+        return;
+      }
+
+      // Mark button as active
+      btn.classList.add('playing');
+      btn.innerHTML = `<i class="fa-solid fa-pause"></i>`;
+      currentPlayingBtn = btn;
+
+      const progress = btn.parentElement.querySelector('.audio-progress');
+      const timeDisplay = btn.parentElement.querySelector('.audio-time');
+      let currentProgress = 0;
+
+      // Simulate synthesised playback sequence
+      synthLoopInterval = setInterval(() => {
+        currentProgress += 2;
+        if (progress) progress.style.width = `${currentProgress}%`;
+
+        // Update synthetic timestamp
+        const seconds = Math.floor((currentProgress / 100) * 15);
+        if (timeDisplay) timeDisplay.textContent = `0:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        // Generate dynamic music pattern notes based on genre
+        if (isAudioEnabled && audioCtx && currentProgress % 10 === 0) {
+          playGenreSynthNote(type);
+        }
+
+        if (currentProgress >= 100) {
+          stopSyntheticTrack(btn);
+        }
+      }, 200);
+    }
+
+    function stopSyntheticTrack(btn) {
+      clearInterval(synthLoopInterval);
+      if (btn) {
+        btn.classList.remove('playing');
+        btn.innerHTML = `<i class="fa-solid fa-play ml-0.5"></i>`;
+        const progress = btn.parentElement.querySelector('.audio-progress');
+        const timeDisplay = btn.parentElement.querySelector('.audio-time');
+        if (progress) progress.style.width = '0%';
+        if (timeDisplay) timeDisplay.textContent = '0:00';
+      }
+      currentPlayingBtn = null;
+    }
+
+    function playGenreSynthNote(type) {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      let freq = 220;
+      if (type === 'cyberpunk') {
+        const notes = [110, 146.83, 164.81, 220, 293.66];
+        freq = notes[Math.floor(Math.random() * notes.length)];
+        osc.type = 'sawtooth';
+      } else if (type === 'scifi') {
+        const notes = [65.41, 98.00, 130.81, 196.00];
+        freq = notes[Math.floor(Math.random() * notes.length)];
+        osc.type = 'triangle';
+      } else {
+        const notes = [440, 554.37, 659.25, 880];
+        freq = notes[Math.floor(Math.random() * notes.length)];
+        osc.type = 'sine';
+      }
+
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.45);
+    }
+
+    document.querySelectorAll('.audio-play-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const soundType = btn.getAttribute('data-sound');
+        playSyntheticTrack(soundType, btn);
+      });
+    });
+
+
+    /* ==========================================
+       4. REALTIME SFX SYNTHESIS LAB (SOUNDBOARD)
+       ========================================== */
+    const pitchSlider = document.getElementById('pitch-shift');
+    const filterSlider = document.getElementById('filter-freq');
+    const pitchVal = document.getElementById('pitch-val');
+    const filterVal = document.getElementById('filter-val');
+
+    pitchSlider.addEventListener('input', (e) => {
+      pitchVal.textContent = `${parseFloat(e.target.value).toFixed(1)}x`;
+    });
+
+    filterSlider.addEventListener('input', (e) => {
+      filterVal.textContent = `${e.target.value} Hz`;
+    });
+
+    function triggerSFX(type) {
+      if (!isAudioEnabled) initAudioContext();
+      if (!audioCtx) return;
+
+      const pitchMod = parseFloat(pitchSlider.value);
+      const cutoffFreq = parseFloat(filterSlider.value);
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      const filter = audioCtx.createBiquadFilter();
+
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(cutoffFreq, audioCtx.currentTime);
+
+      osc.connect(filter);
+      filter.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      const now = audioCtx.currentTime;
+
+      if (type === 'laser') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(900 * pitchMod, now);
+        osc.frequency.exponentialRampToValueAtTime(80 * pitchMod, now + 0.2);
+
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+
+        osc.start(now);
+        osc.stop(now + 0.22);
+      } else if (type === 'sub') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(150 * pitchMod, now);
+        osc.frequency.exponentialRampToValueAtTime(30 * pitchMod, now + 0.8);
+
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+
+        osc.start(now);
+        osc.stop(now + 0.82);
+      } else if (type === 'powerup') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(200 * pitchMod, now);
+        osc.frequency.linearRampToValueAtTime(800 * pitchMod, now + 0.4);
+
+        gain.gain.setValueAtTime(0.18, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+        osc.start(now);
+        osc.stop(now + 0.45);
+      } else if (type === 'glitch') {
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(1200 * pitchMod, now);
+        osc.frequency.setValueAtTime(300 * pitchMod, now + 0.05);
+        osc.frequency.setValueAtTime(800 * pitchMod, now + 0.1);
+
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+
+        osc.start(now);
+        osc.stop(now + 0.16);
+      } else if (type === 'pad') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(220 * pitchMod, now);
+
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(0.2, now + 0.5);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+
+        osc.start(now);
+        osc.stop(now + 1.55);
+      }
+    }
+
+    document.querySelectorAll('.sfx-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sfxType = btn.getAttribute('data-sfx');
+        triggerSFX(sfxType);
+      });
+    });
+
+
+    /* ==========================================
+       5. PORTFOLIO FILTERING & NAV LOGIC
+       ========================================== */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('active', 'border-brand-accent', 'bg-brand-accent/10', 'text-brand-accent');
+          b.classList.add('border-brand-border', 'text-brand-muted');
+        });
+
+        btn.classList.add('active', 'border-brand-accent', 'bg-brand-accent/10', 'text-brand-accent');
+        btn.classList.remove('border-brand-border', 'text-brand-muted');
+
+        const cat = btn.getAttribute('data-category');
+        portfolioItems.forEach(item => {
+          if (cat === 'all' || item.getAttribute('data-category') === cat) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Contact form submit handling
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast("Message sent! Ben will get back to you shortly.");
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
